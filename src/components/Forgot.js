@@ -30,7 +30,7 @@ const Forgot = ({ history }) => {
     event.preventDefault();
     setValues({ ...values, buttonText: "Submitting" });
     axios
-      .post("/password/forgot", { token , email})
+      .post(`${process.env.REACT_APP_API}/password/forgot`, { token , email})
 
       .then((response) => {
         console.log("Forgot Password SUCCESS", response);

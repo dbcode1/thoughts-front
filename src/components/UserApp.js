@@ -23,7 +23,7 @@ const Header = styled("h1")`
 `;
 
 function UserApp() {
-  const formRef = useRef()
+  const formRef = useRef();
   const { data, setData } = useContext(Context);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -34,12 +34,10 @@ function UserApp() {
     getEntries();
   }, []);
 
-  
-
   // get entries
   async function getEntries() {
     await axios
-      .post("/user/entries/user", { token })
+      .post(`${process.env.REACT_APP_API}/user/entries/user`, { token })
       .then((res, req) => {
         console.log("entries", res.data);
         setData({ ...data, entries: res.data, thought: "" });
@@ -55,11 +53,11 @@ function UserApp() {
     event.preventDefault();
 
     await axios
-      .post("/user/entries", { thought, token })
+      .post(`${process.env.REACT_APP_API}/user/entries`, { thought, token })
       .then((res) => {
         getEntries();
         setData({ ...data, thought: "" });
-        formRef.current.reset()
+        formRef.current.reset();
       })
       .catch((err) => {
         console.log(err);
@@ -84,10 +82,13 @@ function UserApp() {
       window.confirm("Are you sure you want to permanently erase your account?")
     ) {
       try {
-        const removeUser = await axios.post("user/remove", { token });
+        const removeUser = await axios.post(
+          `${process.env.REACT_APP_API}/user/remove`,
+          { token }
+        );
         console.log("DELETE ACCOUNT SUCCESS", removeUser.data);
         toast(removeUser.data);
-        handleLogout()
+        handleLogout();
       } catch (error) {
         console.log("DELETE ACCOUNT ERROR", error);
         toast("Account not Deleted");

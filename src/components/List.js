@@ -24,17 +24,6 @@ const CardContainer = styled("div")`
   width: 100%;
 `;
 
-const DeleteEntry = styled("span")`
-  padding: 6px;
-  margin-left: 8px;
-  cursor: pointer;
-`;
-const Container = styled("div")``;
-const ListWrapper = styled("ul")`
-  display: grid;
-  grid-template-areas: list list list;
-`;
-
 export function List(props) {
   const { data, setData } = useContext(Context);
   let entries = data.entries;
@@ -45,7 +34,7 @@ export function List(props) {
 
   async function getEntries() {
     await axios
-      .post("/user/entries/user", { token })
+      .post(`${process.env.REACT_APP_API}/user/entries/user`, { token })
       .then((res, req) => {
         console.log("entries", res.data);
         setData({ entries: res.data, thought: "" });
@@ -59,7 +48,7 @@ export function List(props) {
   async function handleDelete(e) {
     const title = e.target.parentNode.childNodes[0].innerHTML;
     console.log("delete token", token);
-    const response = await axios.post("user/delete", { title, token });
+    const response = await axios.post(`${process.env.REACT_APP_API}user/delete`, { title, token });
     if (response.status === 200) {
       setData({
         ...data,

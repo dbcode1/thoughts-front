@@ -29,7 +29,7 @@ function Login() {
   async function handleSubmit(event) {
     console.log("LOGIN");
     await axios
-      .post("/user/login", { email, password })
+      .post(`${process.env.REACT_APP_API}/user/login`, { email, password })
       .then((res) => {
         setData({ isAuthenticated: true });
         localStorage.setItem("token", res.data.token);

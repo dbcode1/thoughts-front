@@ -17,7 +17,7 @@ function Register() {
       return null;
     }
     await axios
-      .post("/user", data)
+      .post(`${process.env.REACT_APP_API}/user`, data)
       .then((res) => {
         console.log("res", res);
         setData({ isAuthenticated: true });
