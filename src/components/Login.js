@@ -37,7 +37,7 @@ function Login() {
         console.log("LOGIN RESPONSE", res);
       })
       .catch((err, res) => {
-        console.log("trigger alert", err.response);
+        console.log("trigger alert", err.response.data);
         toast(err.response.data);
       });
   }
