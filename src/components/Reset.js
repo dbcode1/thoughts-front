@@ -2,10 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import styled from 'styled-components'
 import { ToastContainer, toast } from "react-toastify";
 import {Button, Input, Submit} from '../css/buttons'
 import {AuthForm, Wrapper} from '../css/global'
 import "react-toastify/dist/ReactToastify.min.css";
+
+const ResetButton = styled(Button)`
+  padding: 1.5em;
+`
 
 const Reset = ({ match }) => {
   const [values, setValues] = useState({
@@ -65,9 +70,9 @@ const Reset = ({ match }) => {
         ></Input>
       
      
-        <Button className=" btn btn-primary" onClick={handleSubmit}>
+        <ResetButton className=" btn btn-primary" onClick={handleSubmit}>
           {buttonText}
-        </Button>
+        </ResetButton>
 
     </AuthForm>
   );

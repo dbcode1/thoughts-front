@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const AuthForm = styled("form")`
   border: 2px solid black;
   display: grid;
+  padding: 1em;
   justify-content: center;
   align-content: center;
 `;

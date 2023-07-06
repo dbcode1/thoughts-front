@@ -70,7 +70,7 @@ function Register() {
             setData({ ...data, passwordTwo: event.target.value })
           }
         ></Input>
-        <Submit className="go" type="submit"></Submit>
+        <Submit className="go" value="Submit" type="submit"></Submit>
       </AuthForm>
       <Nav>
         <SpecialButton>
