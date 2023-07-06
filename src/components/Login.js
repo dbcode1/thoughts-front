@@ -17,12 +17,11 @@ const ForgotButton = styled("button")`
   font-family: courier;
 `;
 function Login() {
-  const ref = useRef()
+  const ref = useRef();
   const { data, setData } = useContext(Context);
   const { email, password, passwordTwo, isAuthenticated } = data;
   const navigate = useNavigate();
 
-  
   function forgot() {
     navigate("/forgot", { replace: true });
   }
@@ -33,7 +32,7 @@ function Login() {
       .then((res) => {
         setData({ isAuthenticated: true });
         localStorage.setItem("token", res.data.token);
-        ref.current.reset()
+        ref.current.reset();
         console.log("LOGIN RESPONSE", res);
       })
       .catch((err, res) => {
@@ -55,7 +54,7 @@ function Login() {
       ></ToastContainer>
       <Wrapper>
         <AuthForm
-        ref={ref}
+          ref={ref}
           onSubmit={(event) => {
             event.preventDefault();
             handleSubmit(event);
