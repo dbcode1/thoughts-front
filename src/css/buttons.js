@@ -4,18 +4,19 @@ import { Link } from "react-router-dom";
 export const StyledLink = styled(Link)`
   text-decoration: none;
   underline: none;
-  font-family: var(--main-font-family);
-  font-size: 16px;
-  margin-top: 16px;
   border-radius: 4px;
   padding: 4px;
+  :hover {
+    color: white;
+  }
 `;
 
 export const Nav = styled("div")`
   width: 100%;
   position: fixed;
-  bottom: 0;
+  bottom: 40px;
   overflow: hidden;
+  text-align: center;
 `;
 
 export const Button = styled("button")`
@@ -25,9 +26,10 @@ export const Button = styled("button")`
   border: 1px solid black;
   font-family: var(--main-font-family);
   font-size: 16px;
-  color: lightblue;
+  padding: 0.25em;
+  color: blue;
   :hover {
-    background-color: lightblue;
+    background-color: blue;
     color: white;
   }
 `;
@@ -43,6 +45,14 @@ export const SpecialButton = styled(Button)`
     
   }
 `;
+
+export const BasicLink = styled(Link)`
+  text-decoration: none;
+  margin: 0 auto;
+  :hover: {
+    background-color: blue;
+  }
+`
 
 export const Input = styled("input")`
   margin: 1em;
@@ -65,9 +75,11 @@ export const Submit = styled(Input)`
   background-color: white;
   border: 1px solid green;
   border-radius: 4px;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
+  background-color: green;
+  color: white;
   :hover {
-    background-color: green;
-    color: white;
+    background-color: white;
+    color: green;
   }
 `;

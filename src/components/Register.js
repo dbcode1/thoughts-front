@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import styled from "styled-components";
 import { Link, Navigate } from "react-router-dom";
 import {AuthForm} from '../css/global'
-import { SpecialButton, Nav, Input, Submit,StyledLink } from "../css/buttons";
+import { BasicLink, Nav, Input, Submit,StyledLink } from "../css/buttons";
 import {Wrapper} from '../css/global'
 function Register() {
   const { data, setData } = useContext(Context);
@@ -73,9 +73,9 @@ function Register() {
         <Submit className="go" value="Submit" type="submit"></Submit>
       </AuthForm>
       <Nav>
-        <SpecialButton>
-          <StyledLink to="/login">Login</StyledLink>
-        </SpecialButton>
+       
+          <BasicLink to="/login">Login</BasicLink>
+        
       </Nav>
     </Wrapper>
   );

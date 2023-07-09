@@ -11,12 +11,9 @@ import Landing from "./components/Landing";
 import Forgot from "./components/Forgot";
 import Reset from "./components/Reset";
 
-import { GoogleOAuthProvider } from "@react-oauth/google";
-
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <ContextProvider>
-    <GoogleOAuthProvider clientId="386932037035-k8v833noqjk7m4***********.apps.googleusercontent.com">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
@@ -30,7 +27,6 @@ ReactDOM.render(
           </Route>
         </Routes>
       </BrowserRouter>
-    </GoogleOAuthProvider>
   </ContextProvider>,
 
   rootElement

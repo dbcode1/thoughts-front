@@ -3,26 +3,22 @@ import { Outlet } from "react-router-dom";
 import "./css/app.css";
 import { injectStyle } from "react-toastify/dist/inject-style";
 // import Nav from './components/Nav'
-import { GoogleLogin } from "@react-oauth/google";
+
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 if (typeof window !== "undefined") {
   injectStyle();
 }
 
 function App() {
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
-
   return (
+    <GoogleOAuthProvider clientId="130497617650-77cf2o6fkhpsln2826959fg9p00qog58.apps.googleusercontent.com">
+
     <div>
       {/* <Nav /> */}
       <Outlet />
-      <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
     </div>
+    </GoogleOAuthProvider>
   );
 }
 

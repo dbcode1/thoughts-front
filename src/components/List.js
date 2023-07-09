@@ -29,14 +29,12 @@ export function List(props) {
   let entries = data.entries;
 
   useEffect(() => {
-    console.log("handle entires", entries);
   }, [entries]);
 
   async function getEntries() {
     await axios
       .post(`${process.env.REACT_APP_API}/user/entries/user`, { token })
       .then((res, req) => {
-        console.log("entries", res.data);
         setData({ entries: res.data, thought: "" });
       })
       .catch((err) => {
@@ -47,15 +45,16 @@ export function List(props) {
   // delete entry
   async function handleDelete(e) {
     const title = e.target.parentNode.childNodes[0].innerHTML;
-    console.log("delete token", token);
-    const response = await axios.post(`${process.env.REACT_APP_API}user/delete`, { title, token });
+    const response = await axios.post(
+      `${process.env.REACT_APP_API}/user/delete`,
+      { title, token }
+    );
     if (response.status === 200) {
       setData({
         ...data,
         entry: "",
         entries: entries.filter((entry) => entry !== title),
       });
-      console.log(entries);
       getEntries();
     } else {
       console.log("delete error");

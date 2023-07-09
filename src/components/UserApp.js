@@ -17,9 +17,16 @@ const AppWrapper = styled("div")`
   margin: 0;
   padding: 0;
 `;
+
+const DeleteMessage = styled("p")`
+  font-size: 13px;
+  margin: 0 auto;
+`;
+
 const Header = styled("h1")`
   text-align: center;
   font-family: var(--main-font-family);
+  margin: 1.25em 0 0.25em  0
 `;
 
 function UserApp() {
@@ -36,10 +43,10 @@ function UserApp() {
 
   // get entries
   async function getEntries() {
+    console.log("token", token);
     await axios
       .post(`${process.env.REACT_APP_API}/user/entries/user`, { token })
       .then((res, req) => {
-        console.log("entries", res.data);
         setData({ ...data, entries: res.data, thought: "" });
       })
       .catch((err) => {
@@ -49,7 +56,6 @@ function UserApp() {
 
   // add an entry
   async function handleSubmit(event) {
-    console.log("saving a thought");
     event.preventDefault();
 
     await axios
@@ -58,6 +64,7 @@ function UserApp() {
         getEntries();
         setData({ ...data, thought: "" });
         formRef.current.reset();
+        console.log("card added", res);
       })
       .catch((err) => {
         console.log(err);
@@ -122,6 +129,7 @@ function UserApp() {
         />
 
         <Submit className="go" type="submit"></Submit>
+        <DeleteMessage>Click thought to delete</DeleteMessage>
       </SearchForm>
       {entries && <List />}
       <Nav>
