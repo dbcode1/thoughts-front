@@ -10,10 +10,12 @@ import UserApp from "./components/UserApp";
 import Landing from "./components/Landing";
 import Forgot from "./components/Forgot";
 import Reset from "./components/Reset";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <ContextProvider>
+    <ContextProvider>
+        <GoogleOAuthProvider clientId="130497617650-77cf2o6fkhpsln2826959fg9p00qog58.apps.googleusercontent.com">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
@@ -27,7 +29,9 @@ ReactDOM.render(
           </Route>
         </Routes>
       </BrowserRouter>
-  </ContextProvider>,
+      </GoogleOAuthProvider>
+    </ContextProvider>
+  ,
 
   rootElement
 );
