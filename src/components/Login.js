@@ -1,14 +1,15 @@
 import React, { useRef, useContext } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { Context } from "../Context";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthForm } from "../css/global";
-import { SpecialButton, Nav, Input, Submit, BasicLink } from "../css/buttons";
+import { Nav, Input, Submit, BasicLink, Button } from "../css/buttons";
 import { Wrapper } from "../css/global";
 import { GoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const ForgotButton = styled("button")`
   display: block;
@@ -16,13 +17,11 @@ const ForgotButton = styled("button")`
   bottom-border: 1px solid blue;
   margin: 0 auto 1em auto;
   font-family: courier;
-`
+`;
 const Google = styled("div")`
   width: 100%;
   padding: 0.5em 0 1em 5.5em;
 `;
-
-
 
 function Login() {
   const ref = useRef();
@@ -30,7 +29,6 @@ function Login() {
   const { email, password, passwordTwo, isAuthenticated } = data;
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const { thought } = data;
 
   async function getEntries(id) {
     await axios
@@ -60,7 +58,7 @@ function Login() {
         console.log("LOGIN RESPONSE", res);
       })
       .catch((err, res) => {
-        console.log("trigger alert", err.response.data);
+        console.log("trigger alert", err);
         toast(err.response.data);
       });
   }
@@ -75,8 +73,15 @@ function Login() {
     }
   };
 
+  // const googleLogin = useGoogleLogin({
+  //   onSuccess: (codeResponse) => login(codeResponse),
+  //   flow: 'auth-code'
+  // });
+
   const login = (response) => {
+    console.log("CUSTOM BUTTON RESPONSE", response);
     const data = { idToken: response.credential };
+    console.log(data);
     axios
       .post(`${process.env.REACT_APP_API}/user/google`, data)
       .then((response) => {
@@ -126,13 +131,15 @@ function Login() {
           ></Input>
           <Submit type="submit" value="Submit"></Submit>
           <ForgotButton onClick={forgot}>Forgot Password</ForgotButton>
+          {/* <Button onClick={() => googleLogin()}>Sign in with Google 🚀 </Button> */}
+
           <Google>
+            LOGIN WITH GOOGLE
             <GoogleLogin
               size="medium"
               type="icon"
               logo_alignment="center"
               shape="square"
-              client_ccccccc
               onSuccess={(credentialResponse) => {
                 login(credentialResponse);
               }}
@@ -144,9 +151,7 @@ function Login() {
         </AuthForm>
       </Wrapper>
       <Nav>
-       
-          <BasicLink to="/register">Register</BasicLink>{" "}
-       
+        <BasicLink to="/register">Register</BasicLink>{" "}
       </Nav>
     </>
   );
