@@ -140,9 +140,7 @@ function Login() {
               type="icon"
               logo_alignment="center"
               shape="square"
-              onSuccess={(credentialResponse) => {
-                login(credentialResponse);
-              }}
+              onSuccess={login}
               onError={() => {
                 console.log("Login Failed");
               }}
