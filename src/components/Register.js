@@ -4,15 +4,15 @@ import { Context } from "../Context";
 import { ToastContainer, toast } from "react-toastify";
 import styled from "styled-components";
 import { Link, Navigate } from "react-router-dom";
-import {AuthForm} from '../css/global'
-import { BasicLink, Nav, Input, Submit,StyledLink } from "../css/buttons";
-import {Wrapper} from '../css/global'
+import { AuthForm } from "../css/global";
+import { BasicLink, Nav, Input, Submit, StyledLink } from "../css/buttons";
+import { Wrapper } from "../css/global";
 function Register() {
   const { data, setData } = useContext(Context);
   const { isAuthenticated, password, passwordTwo } = data;
   async function handleSubmit(event) {
     // send data to backend setData
-    if(password !== passwordTwo) {
+    if (password !== passwordTwo) {
       toast("Passwords must match.");
       return null;
     }
@@ -24,7 +24,7 @@ function Register() {
         localStorage.setItem("token", res.data.token);
       })
       .catch((err, res) => {
-        toast(err.response.data);
+        toast(err);
       });
   }
 
@@ -73,9 +73,7 @@ function Register() {
         <Submit className="go" value="Submit" type="submit"></Submit>
       </AuthForm>
       <Nav>
-       
-          <BasicLink to="/login">Login</BasicLink>
-        
+        <BasicLink to="/login">Login</BasicLink>
       </Nav>
     </Wrapper>
   );
