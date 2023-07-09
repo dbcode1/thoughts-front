@@ -73,10 +73,10 @@ function Login() {
     }
   };
 
-  // const googleLogin = useGoogleLogin({
-  //   onSuccess: (codeResponse) => login(codeResponse),
-  //   flow: 'auth-code'
-  // });
+  const googleLogin = useGoogleLogin({
+    onSuccess: (tokenResponse) => login(tokenResponse),
+    flow: "auth-code",
+  });
 
   const login = (response) => {
     console.log("CUSTOM BUTTON RESPONSE", response);
@@ -141,6 +141,9 @@ function Login() {
               logo_alignment="center"
               shape="square"
               onSuccess={login}
+              scope={
+                "https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/dialogflow"
+              }
               onError={() => {
                 console.log("Login Failed");
               }}
