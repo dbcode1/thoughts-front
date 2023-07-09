@@ -24,7 +24,7 @@ function Register() {
         localStorage.setItem("token", res.data.token);
       })
       .catch((err, res) => {
-        toast(err);
+        console.log(err);
       });
   }
 
