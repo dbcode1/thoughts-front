@@ -8,28 +8,28 @@ import { Button } from "../css/buttons";
 
 const token = localStorage.getItem("token");
 
-const EntriesContainer = styled("div")`
-  display: grid;
-`;
-
 const Card = styled("li")`
   list-style: none;
   font-family: courier;
-  font-weight: bold;
   padding: 10px;
+  margin: 0 auto;
+  width: 80%;
+  
 `;
 
-const CardContainer = styled("div")`
+const CardContainer = styled("ul")`
+  margin: 0;
+  padding: 0;
   text-align: center;
-  width: 100%;
+  
+  overflow-wrap: break-word;
 `;
 
 export function List(props) {
   const { data, setData } = useContext(Context);
   let entries = data.entries;
 
-  useEffect(() => {
-  }, [entries]);
+  useEffect(() => {}, [entries]);
 
   async function getEntries() {
     await axios

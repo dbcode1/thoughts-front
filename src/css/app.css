@@ -2,30 +2,31 @@
   box-sizing: border-box;
 }
 .bodyClassName {
-    color: black !important;
-    font-size: 0.875rem !important;
-  }
-  .toastProgress {
-    background: #333F48 !important;
-  }
+  color: black !important;
+  font-size: 0.875rem !important;
+}
+.toastProgress {
+  background: #333f48 !important;
+}
 
-  .Toastify__toast {
-    color: black
-  }
+.Toastify__toast {
+  color: black;
+}
 
-  .Toastify__toast-body {
-    border-radius: 0;
-  }
+.Toastify__toast-body {
+  border-radius: 0;
+}
 
-  .Toastify__progress-bar--rtl {
-    color:black
-  }
+.Toastify__progress-bar--rtl {
+  color: black;
+}
 
-:root{
-    --main-font-size: 20px;
-    --main-font-family: 'Courier', sans-serif;
-    --main-font-color: black;
-    --Main-background-color: whitesmoke;
+:root {
+  --main-font-size: 20px;
+  --main-font-family: "Arial", sans-serif;
+  --main-font-color: black;
+  --Main-background-color: whitesmoke;
+  
 }
 
 body {
@@ -33,6 +34,5 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: courier;
+  font-family: var(--main-font-family);
 }
-

@@ -20,13 +20,13 @@ const AppWrapper = styled("div")`
 
 const DeleteMessage = styled("p")`
   font-size: 13px;
-  margin: 0 auto;
+  margin: 0 auto 0.25em;
 `;
 
 const Header = styled("h1")`
   text-align: center;
   font-family: var(--main-font-family);
-  margin: 1.25em 0 0.25em  0
+  margin: 0.5em 0 0  0
 `;
 
 function UserApp() {
@@ -138,7 +138,7 @@ function UserApp() {
           Delete Account
         </Button>
       </Nav>
-      {/* <div>entries</div> */}
+     
     </AppWrapper>
   );
 }

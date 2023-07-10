@@ -8,29 +8,32 @@ import { ToastContainer, toast } from "react-toastify";
 import { AuthForm } from "../css/global";
 import { Nav, Input, Submit, BasicLink, Button } from "../css/buttons";
 import { Wrapper } from "../css/global";
-import { GoogleLogin } from "@react-oauth/google";
 import { useGoogleLogin } from "@react-oauth/google";
 
 const ForgotButton = styled("button")`
   display: block;
   border: none;
   bottom-border: 1px solid blue;
-  margin: 0 auto 1em auto;
-  font-family: courier;
+  margin: 0.25em auto 0 auto;
 `;
-const Google = styled("div")`
-  width: 100%;
-  padding: 0.5em 0 1em 5.5em;
+const GoogleButton = styled(Button)`
+  border: none;
+  border-radius: 4px;
+  margin: 0.5em auto 0 auto;
+  padding: 0.5em;
+  font-family: Verdana;
+  width: 85%;
 `;
 
 function Login() {
   const ref = useRef();
   const { data, setData } = useContext(Context);
-  const { email, password, passwordTwo, isAuthenticated } = data;
+  const { email, password, isAuthenticated } = data;
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
   async function getEntries(id) {
+    console.log("get entries token", token);
     await axios
       .post(`${process.env.REACT_APP_API}/user/entries/user`, { token })
       .then((res, req) => {
@@ -74,14 +77,23 @@ function Login() {
   };
 
   const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => login(tokenResponse),
+    // get ID tokens from access-tokens
+    onSuccess: async (tokenResponse) => {
+      const tokens = await axios.post(
+        `${process.env.REACT_APP_API}/user/google-token`,
+        { tokenResponse }
+      );
+      login(tokens.data.id_token);
+    },
     flow: "auth-code",
   });
 
-  const login = (response) => {
-    console.log("CUSTOM BUTTON RESPONSE", response);
-    const data = { idToken: response.credential };
-    console.log(data);
+  const login = (id_token) => {
+    const data = { idToken: id_token };
+    localStorage.setItem("token", id_token);
+    // const data = { idToken: response.credential };
+    //localStorage.setItem("token", response.credential);
+
     axios
       .post(`${process.env.REACT_APP_API}/user/google`, data)
       .then((response) => {
@@ -131,9 +143,9 @@ function Login() {
           ></Input>
           <Submit type="submit" value="Submit"></Submit>
           <ForgotButton onClick={forgot}>Forgot Password</ForgotButton>
-          {/* <Button onClick={() => googleLogin()}>Sign in with Google 🚀 </Button> */}
+          <GoogleButton onClick={() => googleLogin()}>Google</GoogleButton>
 
-          <Google>
+          {/* <Google>
             LOGIN WITH GOOGLE
             <GoogleLogin
               size="medium"
@@ -141,14 +153,12 @@ function Login() {
               logo_alignment="center"
               shape="square"
               onSuccess={login}
-              scope={
-                "https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/dialogflow"
-              }
+              redirect_uri="https://thoughtpad.netlify.app"
               onError={() => {
                 console.log("Login Failed");
               }}
             />
-          </Google>
+          </Google> */}
         </AuthForm>
       </Wrapper>
       <Nav>
