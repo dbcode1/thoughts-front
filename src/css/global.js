@@ -13,7 +13,6 @@ export const AuthForm = styled("form")`
 export const SearchForm = styled("form")`
   display: grid;
   width: 100%;
-  
   justify-content: center;
   padding-bottom: 1em;
   margin: 1em auto;

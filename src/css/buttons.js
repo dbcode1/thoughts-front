@@ -6,8 +6,9 @@ export const StyledLink = styled(Link)`
   underline: none;
   border-radius: 4px;
   padding: 4px;
+  color: white;
   :hover {
-    color: white;
+    color: blue;
   }
 `;
 
@@ -31,10 +32,11 @@ export const Button = styled("button")`
   font-family: var(--main-font-family);
   font-size: 16px;
   padding: 0.25em;
-  color: blue;
+  background-color: blue;
+  color: white;
   :hover {
-    background-color: blue;
-    color: white;
+    background-color: white;
+    color: blue;
   }
 `;
 

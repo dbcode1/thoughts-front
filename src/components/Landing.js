@@ -12,7 +12,7 @@ function Landing() {
   //
   return (
     <Wrapper>
-      <Header>Simple Notepad as a boilerplate for MERN CRUD app.</Header>
+      <Header>Boilerplate for MERN CRUD  with google auth.</Header>
       <Nav>
         <Button>
           <StyledLink to="/register">Register</StyledLink>{" "}

@@ -1,7 +1,5 @@
 import { React, useContext, useEffect, useRef } from "react";
-import { Navigate, History } from "react-router-dom";
 import axios from "axios";
-import { createBrowserHistory } from "history";
 import { useNavigate } from "react-router";
 import { Context } from "../Context";
 import { SearchForm } from "../css/global";
@@ -26,7 +24,7 @@ const DeleteMessage = styled("p")`
 const Header = styled("h1")`
   text-align: center;
   font-family: var(--main-font-family);
-  margin: 0.5em 0 0  0
+  margin: 0.5em 0 0 0;
 `;
 
 function UserApp() {
@@ -34,35 +32,34 @@ function UserApp() {
   const { data, setData } = useContext(Context);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const { thought } = data;
-  const entries = data.entries;
-
-  useEffect(() => {
-    getEntries();
-  }, []);
+  const { thought, entries } = data;
 
   // get entries
   async function getEntries() {
-    console.log("token", token);
     await axios
       .post(`${process.env.REACT_APP_API}/user/entries/user`, { token })
       .then((res, req) => {
         setData({ ...data, entries: res.data, thought: "" });
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
+  useEffect(() => {
+    getEntries();
+  }, []);
+
   // add an entry
   async function handleSubmit(event) {
     event.preventDefault();
-
     await axios
       .post(`${process.env.REACT_APP_API}/user/entries`, { thought, token })
       .then((res) => {
         getEntries();
-        setData({ ...data, thought: "" });
+        //setData({ ...data, thought: "" });
+        setData({ thought: " " });
         formRef.current.reset();
         console.log("card added", res);
       })
@@ -138,7 +135,6 @@ function UserApp() {
           Delete Account
         </Button>
       </Nav>
-     
     </AppWrapper>
   );
 }

@@ -47,7 +47,7 @@ const Forgot = ({ history }) => {
   const passwordForgotForm = () => (
     <form>
       <Wrapper>
-        <h1 style={{ "fontFamily": "courier", "margin-top": "-2em" }}>
+        <h1 style={{"margin-top": "-2em" }}>
           Forgot Password
         </h1>
       <AuthForm>
