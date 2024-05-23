@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Context } from "../Context";
-import { getEntries } from "./UserApp";
+import getEntries from "./UserApp";
 import styled from "styled-components";
 import uniqid from "uniqid";
 
@@ -9,15 +9,19 @@ const token = localStorage.getItem("token");
 
 const Card = styled("li")`
   list-style: none;
-  margin: 8px auto;
-  width: 300px;
+  margin: 8px 0;
+  width: 100%;
   overflow-wrap: break-word;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding: 4px;
+  
 `;
 
 const CardContainer = styled("ul")`
   text-align: center;
   padding: 0;
-  margin: 0;
+  margin: 0 25%;
 `;
 
 export function List(props) {
@@ -26,34 +30,26 @@ export function List(props) {
 
   useEffect(() => {}, [entries]);
 
-  async function getEntries() {
-    await axios
-      .post(`${process.env.REACT_APP_API}/user/entries/user`, { token })
-      .then((res, req) => {
-        setData({ entries: res.data, thought: "" });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   // delete entry
-  async function handleDelete(e) {
-    const title = e.target.parentNode.childNodes[0].innerHTML;
+  async function handleDelete(e, id) {
+    //entries.forEach((entry) => console.log(entry._id));
+
+    //get text of clicked
+    console.log(id);
+
+    const response = await axios.post(
+      `${process.env.REACT_APP_API}/user/delete`,
+      {
+        id,
+        token,
+      }
+    );
+
     setData({
       ...data,
       entry: "",
-      entries: entries.filter((entry) => entry.text !== title),
+      entries: entries.filter((entry) => entry._id !== id),
     });
-    const response = await axios.post(
-      `${process.env.REACT_APP_API}/user/delete`,
-      { title, token }
-    );
-    if (response.status === 200) {
-      getEntries();
-    } else {
-      console.log("delete error");
-    }
   }
 
   return (
@@ -62,7 +58,7 @@ export function List(props) {
         entries.map((entry) => {
           return (
             <CardContainer>
-              <Card id={uniqid()} onClick={(e) => handleDelete(e)}>
+              <Card onClick={(e) => handleDelete(e, entry._id)}>
                 {entry.text}
               </Card>
             </CardContainer>

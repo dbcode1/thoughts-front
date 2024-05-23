@@ -1,11 +1,10 @@
-import { React, useContext, useEffect, useRef } from "react";
+import { React, useContext, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { Context } from "../Context";
 import { SearchForm } from "../css/global";
 import { ToastContainer, toast } from "react-toastify";
 import "../css/app.css";
-
 import styled from "styled-components";
 import { Nav, Button, SearchInput, Submit } from "../css/buttons";
 import { List } from "./List";
@@ -28,28 +27,33 @@ const Header = styled("h1")`
 `;
 
 function UserApp() {
-  const formRef = useRef();
   const { data, setData } = useContext(Context);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const { thought, entries } = data;
+  // const { thought, entries } = data;
+  const { entries } = data;
+  const [thought, setThought] = useState("");
+  const [thoughts, setThoughts] = useState([]);
 
   // get entries
   async function getEntries() {
+    console.log("get entries");
     await axios
       .post(`${process.env.REACT_APP_API}/user/entries/user`, { token })
       .then((res, req) => {
-        setData({ ...data, entries: res.data, thought: "" });
-        console.log(res.data);
+        setData({ ...data, entries: res.data });
       })
       .catch((err) => {
         console.log(err);
       });
   }
-
   useEffect(() => {
     getEntries();
   }, []);
+
+  const onChange = (event) => {
+    setThought(event.target.value);
+  };
 
   // add an entry
   async function handleSubmit(event) {
@@ -57,16 +61,13 @@ function UserApp() {
     await axios
       .post(`${process.env.REACT_APP_API}/user/entries`, { thought, token })
       .then((res) => {
-        getEntries();
-        //setData({ ...data, thought: "" });
-        setData({ thought: " " });
-        formRef.current.reset();
-        console.log("card added", res);
+        setData({ ...data, entries: res.data });
       })
       .catch((err) => {
         console.log(err);
         toast(err.response.data);
       });
+    setThought("");
   }
 
   // logout
@@ -75,10 +76,6 @@ function UserApp() {
     localStorage.clear();
     navigate("/", { replace: true });
   };
-
-  async function onChange(event) {
-    setData({ ...data, thought: event.target.value });
-  }
 
   async function deleteAccount(data, setData) {
     console.log("DELETE ACCOUNT");
@@ -108,13 +105,10 @@ function UserApp() {
         progressClassName="toastProgress"
         bodyClassName="toastBody"
       ></ToastContainer>
-
       <SearchForm
-        ref={formRef}
         onSubmit={(event) => {
           handleSubmit(event);
           event.preventDefault();
-          return false;
         }}
       >
         <Header>Thought Pad</Header>
@@ -123,12 +117,12 @@ function UserApp() {
           placeholder="Your Thought"
           onChange={onChange}
           required
+          value={thought}
         />
-
         <Submit className="go" type="submit"></Submit>
         <DeleteMessage>Click thought to delete</DeleteMessage>
       </SearchForm>
-      {entries && <List />}
+      {entries && <List thoughts={thoughts} />}
       <Nav>
         <Button onClick={handleLogout}>Logout</Button>
         <Button to="/" onClick={deleteAccount}>

@@ -13,18 +13,18 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Nav = styled("div")`
-  width: 100%;
+display: flex;
+justify-content: space-evenly;
+width: 100%;
   position: fixed;
   z-index: 100;
   background-color: whitesmoke;
   bottom: 0;
   padding: 1em;
   overflow: hidden;
-  text-align: center;
 `;
 
 export const Button = styled("button")`
-  margin: 0 1em  0 auto;
   background: none;
   border-radius: 4px;
   border: 2px solid blue;
@@ -34,6 +34,7 @@ export const Button = styled("button")`
   padding: 0.25em;
   background-color: blue;
   color: white;
+  width: 100px;
   :hover {
     background-color: white;
     color: blue;
@@ -62,7 +63,7 @@ export const BasicLink = styled(Link)`
 `
 
 export const Input = styled("input")`
-  margin: 1em;
+  margin: 1em 0 0 0;
   padding: 10px;
   text-align: center;
   font-weight: bold;

@@ -10,6 +10,7 @@ import { Wrapper } from "../css/global";
 function Register() {
   const { data, setData } = useContext(Context);
   const { isAuthenticated, password, passwordTwo } = data;
+  
   async function handleSubmit(event) {
     // send data to backend setData
     if (password !== passwordTwo) {

@@ -14,15 +14,16 @@ const ForgotButton = styled("button")`
   display: block;
   border: none;
   bottom-border: 1px solid blue;
-  margin: 0.25em auto 0 auto;
+  margin: 0.75em auto 1em auto;
 `;
 const GoogleButton = styled(Button)`
   border: none;
   border-radius: 4px;
-  margin: 0.5em auto 0 auto;
+  width: 100px;
+  
   padding: 0.5em;
   font-family: Verdana;
-  width: 85%;
+  width: 100%;
 `;
 
 function Login() {
@@ -78,17 +79,23 @@ function Login() {
 
   const googleLogin = useGoogleLogin({
     // get ID tokens from access-tokens
+
     onSuccess: async (tokenResponse) => {
       const tokens = await axios.post(
         `${process.env.REACT_APP_API}/user/google-token`,
         { tokenResponse }
       );
+      console.log(tokens.data.id_token);
       login(tokens.data.id_token);
     },
     flow: "auth-code",
+    onError: (error) => {
+      console.log("google login failure");
+    },
   });
 
   const login = (id_token) => {
+    console.log("google login");
     const data = { idToken: id_token };
     localStorage.setItem("token", id_token);
     // const data = { idToken: response.credential };
@@ -142,8 +149,16 @@ function Login() {
             }
           ></Input>
           <Submit type="submit" value="Submit"></Submit>
+          <GoogleButton
+            onClick={(event) => {
+              event.preventDefault();
+              googleLogin(event);
+            }}
+          >
+            Google
+          </GoogleButton>
           <ForgotButton onClick={forgot}>Forgot Password</ForgotButton>
-          <GoogleButton onClick={() => googleLogin()}>Google</GoogleButton>
+
 
           {/* <Google>
             LOGIN WITH GOOGLE

@@ -10,8 +10,9 @@ let token = ''
 
 const Reset = styled(Button)`
     padding: 10px;
-    width: 87%;
-    margin-bottom: 2em;
+    margin: 1em auto;
+   
+ 
 `
 const Forgot = ({ history }) => {
   const [values, setValues] = useState({

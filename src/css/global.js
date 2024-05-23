@@ -15,7 +15,8 @@ export const SearchForm = styled("form")`
   width: 100%;
   justify-content: center;
   padding-bottom: 1em;
-  margin: 1em auto;
+  margin-bottom: 2em;
+  background-color: lightgrey;
 `;
 
 export const Wrapper = styled("div")`

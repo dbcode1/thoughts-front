@@ -15,7 +15,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 const rootElement = document.getElementById("root");
 ReactDOM.render(
     <ContextProvider>
-        <GoogleOAuthProvider clientId="130497617650-77cf2o6fkhpsln2826959fg9p00qog58.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={`${process.env.REACT_APP_CLIENT_ID}`}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
@@ -36,11 +36,3 @@ ReactDOM.render(
   rootElement
 );
 
-// react router 6
-/* 
-rootElement.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
-*/
