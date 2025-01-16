@@ -11,8 +11,17 @@ import { List } from "./List";
 
 const AppWrapper = styled("div")`
   height: 100vh;
-  margin: 0;
+  width: 100vw;
+  margin: 0 auto;
   padding: 0;
+`;
+
+const EntriesWrapper = styled("div")`
+  margin: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-conent: center;
+  // align-items: center;
 `;
 
 const DeleteMessage = styled("p")`
@@ -122,7 +131,7 @@ function UserApp() {
         <Submit className="go" type="submit"></Submit>
         <DeleteMessage>Click thought to delete</DeleteMessage>
       </SearchForm>
-      {entries && <List thoughts={thoughts} />}
+      <EntriesWrapper>{entries && <List thoughts={thoughts} />}</EntriesWrapper>
       <Nav>
         <Button onClick={handleLogout}>Logout</Button>
         <Button to="/" onClick={deleteAccount}>

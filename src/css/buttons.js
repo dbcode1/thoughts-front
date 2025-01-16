@@ -13,9 +13,9 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Nav = styled("div")`
-display: flex;
-justify-content: space-evenly;
-width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
   position: fixed;
   z-index: 100;
   background-color: whitesmoke;
@@ -41,7 +41,6 @@ export const Button = styled("button")`
   }
 `;
 
-
 export const SpecialButton = styled(Button)`
   width: 100%;
   border: none;
@@ -49,7 +48,6 @@ export const SpecialButton = styled(Button)`
   :hover {
     color: red;
     background: none;
-    
   }
 `;
 
@@ -60,7 +58,7 @@ export const BasicLink = styled(Link)`
   :hover: {
     background-color: blue;
   }
-`
+`;
 
 export const Input = styled("input")`
   margin: 1em 0 0 0;
@@ -71,6 +69,9 @@ export const Input = styled("input")`
   border-radius: 4px;
   ::placeholder {
     color: grey;
+  }
+  :focus {
+    outline: none;
   }
 `;
 

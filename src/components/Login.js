@@ -20,7 +20,7 @@ const GoogleButton = styled(Button)`
   border: none;
   border-radius: 4px;
   width: 100px;
-  
+
   padding: 0.5em;
   font-family: Verdana;
   width: 100%;
@@ -36,7 +36,7 @@ function Login() {
   async function getEntries(id) {
     console.log("get entries token", token);
     await axios
-      .post(`${process.env.REACT_APP_API}/user/entries/user`, { token })
+      .post(`http://localhost:5000/user/entries/user`, { token })
       .then((res, req) => {
         console.log("entries", res.data);
         setData({ ...data, entries: res.data, thought: "" });
@@ -54,7 +54,7 @@ function Login() {
     console.log("LOGIN");
 
     await axios
-      .post(`${process.env.REACT_APP_API}/user/login`, { email, password })
+      .post(`http://localhost:5000/user/login`, { email, password })
       .then((res) => {
         setData({ isAuthenticated: true });
         localStorage.setItem("token", res.data.token);
@@ -158,7 +158,6 @@ function Login() {
             Google
           </GoogleButton>
           <ForgotButton onClick={forgot}>Forgot Password</ForgotButton>
-
 
           {/* <Google>
             LOGIN WITH GOOGLE
