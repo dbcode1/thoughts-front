@@ -36,7 +36,7 @@ function Login() {
   async function getEntries(id) {
     console.log("get entries token", token);
     await axios
-      .post(`http://localhost:5000/user/entries/user`, { token })
+      .post(`${process.env.REACT_APP_API}/user/entries/user`, { token })
       .then((res, req) => {
         console.log("entries", res.data);
         setData({ ...data, entries: res.data, thought: "" });
@@ -54,7 +54,7 @@ function Login() {
     console.log("LOGIN");
 
     await axios
-      .post(`http://localhost:5000/user/login`, { email, password })
+      .post(`${process.env.REACT_APP_API}/user/login`, { email, password })
       .then((res) => {
         setData({ isAuthenticated: true });
         localStorage.setItem("token", res.data.token);
