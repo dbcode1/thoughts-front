@@ -12,7 +12,7 @@ function Landing() {
   //
   return (
     <Wrapper>
-      <Header>Boilerplate for MERN CRUD app with google login.</Header>
+      <Header>A place to collect your thoughts.</Header>
       <Nav>
         <Button>
           <StyledLink to="/register">Register</StyledLink>{" "}
