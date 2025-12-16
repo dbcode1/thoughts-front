@@ -14,6 +14,7 @@ const AppWrapper = styled("div")`
   width: 100vw;
   margin: 0 auto;
   padding: 0;
+  font-family: var(--main-font-family);
 `;
 
 const EntriesWrapper = styled("div")`
@@ -31,7 +32,7 @@ const DeleteMessage = styled("p")`
 
 const Header = styled("h1")`
   text-align: center;
-  font-family: var(--main-font-family);
+  font-family: "Momo Signature", cursive;
   margin: 0.5em 0 0 0;
 `;
 

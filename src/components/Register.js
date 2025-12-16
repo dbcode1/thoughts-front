@@ -7,11 +7,13 @@ import { Link, Navigate } from "react-router-dom";
 import { AuthForm } from "../css/global";
 import { BasicLink, Nav, Input, Submit, StyledLink } from "../css/buttons";
 import { Wrapper } from "../css/global";
+
 function Register() {
   const { data, setData } = useContext(Context);
   const { isAuthenticated, password, passwordTwo } = data;
   
   async function handleSubmit(event) {
+    console.log("register")
     // send data to backend setData
     if (password !== passwordTwo) {
       toast("Passwords must match.");

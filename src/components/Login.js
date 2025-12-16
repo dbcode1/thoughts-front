@@ -98,9 +98,7 @@ function Login() {
     console.log("google login");
     const data = { idToken: id_token };
     localStorage.setItem("token", id_token);
-    // const data = { idToken: response.credential };
-    //localStorage.setItem("token", response.credential);
-
+   
     axios
       .post(`${process.env.REACT_APP_API}/user/google`, data)
       .then((response) => {
@@ -158,21 +156,6 @@ function Login() {
             Google
           </GoogleButton>
           <ForgotButton onClick={forgot}>Forgot Password</ForgotButton>
-
-          {/* <Google>
-            LOGIN WITH GOOGLE
-            <GoogleLogin
-              size="medium"
-              type="icon"
-              logo_alignment="center"
-              shape="square"
-              onSuccess={login}
-              redirect_uri="https://thoughtpad.netlify.app"
-              onError={() => {
-                console.log("Login Failed");
-              }}
-            />
-          </Google> */}
         </AuthForm>
       </Wrapper>
       <Nav>

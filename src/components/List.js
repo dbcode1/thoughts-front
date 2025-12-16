@@ -10,14 +10,23 @@ const token = localStorage.getItem("token");
 const Card = styled("li")`
   list-style: none;
   margin: 8px;
-  max-width: 10rem;
+  width: 10rem;
+  height: 6rem;
+  max-width: 6rem;
   background-color: yellow;
   overflow-wrap: break-word;
   border-radius: 4px;
   padding: 0.5rem;
+  text-align: center;
+  font-family: "Momo Signature", cursive;
+  cursor: pointer;
 `;
 
 const CardContainer = styled("div")`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   padding: 0;
   margin: 0 auto;
 `;
@@ -35,11 +44,14 @@ export function List(props) {
     //get text of clicked
     console.log(id);
 
-    const response = await axios.post(`${process.env.REACT_APP_API}/user/delete`, {
-      id,
-      token,
-    });
-    console.log(response)
+    const response = await axios.post(
+      `${process.env.REACT_APP_API}/user/delete`,
+      {
+        id,
+        token,
+      }
+    );
+    console.log(response);
     setData({
       ...data,
       entry: "",
