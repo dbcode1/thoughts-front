@@ -13,12 +13,14 @@ function Register() {
   const { isAuthenticated, password, passwordTwo } = data;
   
   async function handleSubmit(event) {
-    console.log("register")
+    //console.log("register")
+    console.log(`${process.env.REACT_APP_API}`);
     // send data to backend setData
     if (password !== passwordTwo) {
       toast("Passwords must match.");
       return null;
     }
+    
     await axios
       .post(`${process.env.REACT_APP_API}/user`, data)
       .then((res) => {
