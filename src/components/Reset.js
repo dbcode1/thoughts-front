@@ -38,6 +38,7 @@ const Reset = ({ match }) => {
   };
 
   const handleSubmit = (event) => {
+    console.log("reset password")
     event.preventDefault();
     setValues({ ...values, buttonText: "Submitting" });
     axios
