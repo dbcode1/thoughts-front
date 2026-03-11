@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 export const StyledLink = styled(Link)`
   text-decoration: none;
   underline: none;
-  border-radius: 4px;
+  border: none;
   padding: 4px;
-  color: white;
+  color: blue;
   :hover {
-    color: blue;
+    color: white;
   }
 `;
 
@@ -18,7 +18,6 @@ export const Nav = styled("div")`
   width: 100%;
   position: fixed;
   z-index: 100;
-  background-color: whitesmoke;
   bottom: 0;
   padding: 1em;
   overflow: hidden;
@@ -26,18 +25,18 @@ export const Nav = styled("div")`
 
 export const Button = styled("button")`
   background: none;
+  border: none;
   border-radius: 4px;
-  border: 2px solid blue;
   transition-duration: 0.4s;
   font-family: var(--main-font-family);
   font-size: 16px;
   padding: 0.25em;
-  background-color: blue;
-  color: white;
+  background-color: lightblue;
+  color: blue;
   width: 100px;
   :hover {
-    background-color: white;
-    color: blue;
+    background-color: blue;
+    color: white;
   }
 `;
 
@@ -57,10 +56,12 @@ export const BasicLink = styled(Link)`
   color: blue;
   :hover: {
     background-color: blue;
+    color: white;
   }
 `;
 
 export const Input = styled("input")`
+  font-family: var(--main-font-family);
   margin: 1em 0 0 0;
   padding: 10px;
   text-align: center;
@@ -81,11 +82,10 @@ export const SearchInput = styled(Input)`
 
 export const Submit = styled(Input)`
   font-family: var(--main-font-family);
-  background-color: white;
-  border: 1px solid green;
+  border: none;
   border-radius: 4px;
   margin-bottom: 1em;
-  background-color: green;
+  background-color: #7dc87d;
   color: white;
   :hover {
     background-color: white;

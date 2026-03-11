@@ -25,11 +25,14 @@ const Reset = ({ match }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(key)
     let token = key.token;
     if (token) {
       setValues({ ...values, /*name*/ token });
     }
   }, []);
+
+  
 
   const { /*name,*/ token, newPassword, buttonText } = values;
 
@@ -48,9 +51,11 @@ const Reset = ({ match }) => {
       })
       .then((response) => {
         console.log("RESET Password SUCCESS", response);
+        console.log(response.data)
         toast.success(response.data.message);
         setValues({ ...values, buttonText: "Done" });
         navigate("/login", { replace: true });
+        window.location.reload()
       })
       .catch((error) => {
         console.log("SIGNIN ERROR", error.response.data);

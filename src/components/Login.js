@@ -20,9 +20,8 @@ const GoogleButton = styled(Button)`
   border: none;
   border-radius: 4px;
   width: 100px;
-
+font-weight: bold;
   padding: 0.5em;
-  font-family: Verdana;
   width: 100%;
 `;
 
@@ -58,7 +57,8 @@ function Login() {
       .then((res) => {
         setData({ isAuthenticated: true });
         localStorage.setItem("token", res.data.token);
-        ref.current.reset();
+        console.log(ref)
+        //ref.current.reset();
         console.log("LOGIN RESPONSE", res);
       })
       .catch((err, res) => {
@@ -81,11 +81,12 @@ function Login() {
     // get ID tokens from access-tokens
 
     onSuccess: async (tokenResponse) => {
+     console.log(tokenResponse)
       const tokens = await axios.post(
         `${process.env.REACT_APP_API}/user/google-token`,
         { tokenResponse }
       );
-      console.log(tokens.data.id_token);
+      console.log(tokens)
       login(tokens.data.id_token);
     },
     flow: "auth-code",
@@ -98,7 +99,7 @@ function Login() {
     console.log("google login");
     const data = { idToken: id_token };
     localStorage.setItem("token", id_token);
-   
+
     axios
       .post(`${process.env.REACT_APP_API}/user/google`, data)
       .then((response) => {
@@ -153,7 +154,7 @@ function Login() {
               googleLogin(event);
             }}
           >
-            Google
+           Google Sign In
           </GoogleButton>
           <ForgotButton onClick={forgot}>Forgot Password</ForgotButton>
         </AuthForm>

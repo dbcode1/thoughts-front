@@ -10,9 +10,8 @@ const token = localStorage.getItem("token");
 const Card = styled("li")`
   list-style: none;
   margin: 8px;
-  width: 10rem;
-  height: 6rem;
-  max-width: 6rem;
+  height: 8rem;
+  max-width: 12rem;
   background-color: yellow;
   overflow-wrap: break-word;
   border-radius: 4px;
@@ -20,12 +19,13 @@ const Card = styled("li")`
   text-align: center;
   font-family: "Momo Signature", cursive;
   cursor: pointer;
+  color: grey;
+  box-shadow: 10px 10px 109px -27px rgba(0, 0, 0, 0.75);
 `;
 
 const CardContainer = styled("div")`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: start;
   flex-wrap: wrap;
   padding: 0;
   margin: 0 auto;
@@ -41,8 +41,6 @@ export function List(props) {
   async function handleDelete(e, id) {
     //entries.forEach((entry) => console.log(entry._id));
 
-    //get text of clicked
-    console.log(id);
 
     const response = await axios.post(
       `${process.env.REACT_APP_API}/user/delete`,

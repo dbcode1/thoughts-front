@@ -39,22 +39,22 @@ const Header = styled("h1")`
 function UserApp() {
   const { data, setData } = useContext(Context);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
   // const { thought, entries } = data;
   const { entries } = data;
   const [thought, setThought] = useState("");
   const [thoughts, setThoughts] = useState([]);
+  const token = localStorage.getItem("token");
 
   // get entries
   async function getEntries() {
-    console.log("get entries");
+    console.log("get entries", token);
     await axios
       .post(`${process.env.REACT_APP_API}/user/entries/user`, { token })
       .then((res, req) => {
         setData({ ...data, entries: res.data });
       })
       .catch((err) => {
-        console.log(err);
+        console.log("get entries error", err);
       });
   }
   useEffect(() => {

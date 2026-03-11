@@ -8,6 +8,8 @@ export const AuthForm = styled("form")`
   padding: 2em;
   justify-content: center;
   align-content: center;
+  background-color: lightcyan;
+  border-radius: 4px;
 `;
 
 export const SearchForm = styled("form")`
@@ -16,7 +18,7 @@ export const SearchForm = styled("form")`
   justify-content: center;
   padding-bottom: 1em;
   margin-bottom: 2em;
-  background-color: lightgrey;
+ 
 `;
 
 export const Wrapper = styled("div")`

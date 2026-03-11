@@ -23,17 +23,16 @@
 
 :root {
   --main-font-size: 20px;
-  --main-font-family: "Arial", sans-serif;
+  --main-font-family: "Roboto Condensed", sans-serif;
   --main-font-color: black;
-  --Main-background-color: whitesmoke;
-  
+  --Main-background-color: #d3a373;
 }
 
 body {
   background-color: var(--Main-background-color);
   margin: 0;
+  color: white;
   padding: 0;
   box-sizing: border-box;
   font-family: var(--main-font-family);
-  
 }
