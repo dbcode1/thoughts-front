@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-import {useNavigate} from 'react-router'
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import styled from "styled-components";
 import { Button, Input } from "../css/buttons";
@@ -10,14 +10,14 @@ import "react-toastify/dist/ReactToastify.min.css";
 //const token = JSON.parse(localStorage.getItem("token"));
 let token = "";
 
-const resend = new Resend("re_dChRYTuZ_9n2kfrsMs2XPau8Kni1myNb1");
+const resend = new Resend(`${process.env.RESEND_API_KEY}`);
 
 const Reset = styled(Button)`
   padding: 10px;
   margin: 1em auto;
 `;
 const Forgot = ({ history }) => {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
     buttonText: "Reset",
@@ -37,9 +37,11 @@ const Forgot = ({ history }) => {
       .post(`${process.env.REACT_APP_API}/password/forgot`, { email })
       .then((response) => {
         console.log("Forgot Password SUCCESS", response);
-        toast.success(response.data.message);
+        console.log(response.data.message);
+
         setValues({ ...values, buttonText: "Requested" });
-        navigate("/login")
+        navigate("/login");
+        toast.success(response.data.message);
       })
       .catch((error) => {
         console.log("RESET ERROR", error);
