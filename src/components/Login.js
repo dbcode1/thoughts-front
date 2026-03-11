@@ -50,7 +50,7 @@ function Login() {
   }
 
   async function handleSubmit(event) {
-    console.log("LOGIN");
+    console.log("LOGIN", `${process.env.REACT_APP_API}`);
 
     await axios
       .post(`${process.env.REACT_APP_API}/user/login`, { email, password })
