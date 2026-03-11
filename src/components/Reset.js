@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
 import { Button, Input, Submit } from "../css/buttons";
 import { AuthForm, Wrapper } from "../css/global";
-import "react-toastify/dist/ReactToastify.min.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const ResetButton = styled(Button)`
   width: 100%;

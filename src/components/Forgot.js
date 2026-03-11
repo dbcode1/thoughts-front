@@ -6,7 +6,7 @@ import { Button, Input } from "../css/buttons";
 import { AuthForm, Wrapper } from "../css/global";
 import { ToastContainer, toast } from "react-toastify";
 import { Resend } from "resend";
-import "react-toastify/dist/ReactToastify.min.css";
+import "react-toastify/dist/ReactToastify.css";
 //const token = JSON.parse(localStorage.getItem("token"));
 let token = "";
 

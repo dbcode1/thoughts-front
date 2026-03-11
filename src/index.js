@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 //import "./index.css";
 import App from "./App";
@@ -12,8 +12,9 @@ import Forgot from "./components/Forgot";
 import Reset from "./components/Reset";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(
     <ContextProvider>
         <GoogleOAuthProvider clientId={`${process.env.REACT_APP_CLIENT_ID}`}>
       <BrowserRouter>
@@ -33,6 +34,6 @@ ReactDOM.render(
     </ContextProvider>
   ,
 
-  rootElement
+  root
 );
 

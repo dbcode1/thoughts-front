@@ -1,12 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import "./css/app.css";
-import { injectStyle } from "react-toastify/dist/inject-style";
+import "react-toastify/dist/ReactToastify.css";
+
 // import Nav from './components/Nav'
 
-if (typeof window !== "undefined") {
-  injectStyle();
-}
+// if (typeof window !== "undefined") {
+//   injectStyle();
+// }
 
 function App() {
   return (
